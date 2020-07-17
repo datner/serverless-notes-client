@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Link, useHistory } from "react-router-dom";
+import Routes from "./Routes";
+import { Nav, Navbar } from "react-bootstrap";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const history = useHistory();
+	return (
+		<div className="App container">
+			<Navbar bg="light" variant="light" collapseOnSelect>
+				<Navbar.Brand>
+					<Link to="/">Scratch</Link>
+				</Navbar.Brand>
+				<Navbar.Toggle />
+				<Navbar.Collapse>
+					<Nav
+						className="justify-content-end"
+						defaultActiveKey="/"
+						onSelect={(to) => history.push(to)}
+					>
+						<Nav.Item>
+							<Nav.Link eventKey="/signup">Signup</Nav.Link>
+						</Nav.Item>
+						<Nav.Item>
+							<Nav.Link eventKey="/login">Login</Nav.Link>
+						</Nav.Item>
+					</Nav>
+				</Navbar.Collapse>
+			</Navbar>
+			<Routes />
+		</div>
+	);
 }
 
 export default App;
